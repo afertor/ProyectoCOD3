@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="f6f73362-7e97-4e45-8da6-950bcf646ac6" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/proyecto.iml" beforeDir="false" />
-    </list>
+    <list default="true" id="f6f73362-7e97-4e45-8da6-950bcf646ac6" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -26,7 +27,11 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/Adrian/Desktop/ProyectoCOD"
+    "last_opened_file_path": "C:/Users/Adrian/Desktop/ProyectoCOD3",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)"
   }
 }]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -38,6 +43,7 @@
       <option name="presentableId" value="Default" />
       <updated>1685954928912</updated>
       <workItem from="1685954930081" duration="47000" />
+      <workItem from="1685956483036" duration="378000" />
     </task>
     <servers />
   </component>
