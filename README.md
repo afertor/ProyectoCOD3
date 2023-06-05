@@ -1,5 +1,18 @@
 # ProyectoCOD3
-En esta rama esta el programa inicial y a base de pull request e issues iremos implementando las nuevas funciones
+
+En esta rama esta el programa inicial y a base de pull request e issues iremos implementando las nuevas funciones pero de momento tenemos lo siguiente:
+
+## Buscaminas
+El juego Buscaminas es una versión simplificada del clásico juego de mesa. El objetivo es abrir todas las casillas sin revelar ninguna mina. El tablero está compuesto por casillas que pueden contener minas o números que indican la cantidad de minas adyacentes. Nuestra versión del Buscaminas les desafiará a usar su lógica y deducción para determinar la ubicación de las minas y abrir las casillas de manera segura.
+
+El código del juego Buscaminas se encuentra en el paquete buscaminas. Dentro de este paquete, encontrarán las clases que conforman el juego, como Casilla, Tablero, Interfaz y Proyecto_buscaminas. Cada clase cumple un propósito específico en el funcionamiento del juego.
+
+
+## Snake
+El juego Snake es otro juego divertido que les encantará. En este juego, tomarán el control de una serpiente y deberán moverla para que coma manzanas y crezca. El objetivo es evitar chocar con los bordes del juego o con el propio cuerpo de la serpiente. Cada vez que la serpiente come una manzana, su longitud aumenta y acumularán puntos.
+
+El código del juego Snake se encuentra en el paquete snake. Dentro de este paquete, encontrarán las clases PanelJuego y Juego, que son responsables de controlar el juego y mostrar la ventana de juego.
+
 
 
 ## Diagrama de flujo 
