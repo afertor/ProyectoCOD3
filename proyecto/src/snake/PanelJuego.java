@@ -191,13 +191,10 @@ public class PanelJuego extends JPanel implements ActionListener {
 	}
 
 	public void guardarPuntuacionEnBaseDeDatos(String nombreJugador, int puntuacion, String nombreJuego) {
-		String url = "jdbc:mysql://localhost:3306/proyecto";
-		String usuario = "root";
-		String contraseña = "programacion";
-
-		try ( Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/proyecto", "root", "programacion")) {
+		try {
+			Connection connection = DatabaseSingleton.getInstance().getConnection();
 			String query = "INSERT INTO puntuaciones (nombre, puntuacion, juego) VALUES (?, ?, ?)";
-			PreparedStatement stmt = con.prepareStatement(query);
+			PreparedStatement stmt = connection.prepareStatement(query);
 			stmt.setString(1, nombreJugador);
 			stmt.setInt(2, puntuacion);
 			stmt.setString(3, nombreJuego);
