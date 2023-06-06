@@ -1,26 +1,28 @@
 package buscaminas;
 
-/**
- *
- * @author lucas
- */
-import java.awt.GridLayout;
 
-import javax.swing.JPanel;
+import java.awt.GridLayout;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 public class Tablero extends JPanel {
 
-    private Casilla[][] casillas; // Matriz de casillas que representa el tablero
-    private int filas; // Número de filas en el tablero
-    private int columnas; // Número de columnas en el tablero
-    private int minas; // Número de minas en el tablero
+    private Casilla[][] casillas;
+    private int filas;
+    private int columnas;
+    private int minas;
+    private Interfaz interfaz;
+    private int tiempo; // Variable para almacenar el tiempo transcurrido
 
-    // Constructor
     public Tablero(int filas, int columnas, int minas) {
         this.filas = filas;
         this.columnas = columnas;
         this.minas = minas;
+        this.tiempo = 0; // Inicializar el tiempo en 0
 
         casillas = new Casilla[filas][columnas];
         setLayout(new GridLayout(filas, columnas));
@@ -34,7 +36,6 @@ public class Tablero extends JPanel {
         calcularValores();
     }
 
-    // Coloca las minas en el tablero
     private void colocarMinas() {
         int contador = 0;
         while (contador < minas) {
@@ -47,7 +48,6 @@ public class Tablero extends JPanel {
         }
     }
 
-    // Calcula el valor de cada casilla
     private void calcularValores() {
         for (int i = 0; i < filas; i++) {
             for (int j = 0; j < columnas; j++) {
@@ -106,7 +106,7 @@ public class Tablero extends JPanel {
     }
 
     public void mostrarMensajeDerrota() {
-        JOptionPane.showMessageDialog(this, "Has perdido! ", "Mensaje de derrota", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(this, "Has perdido!", "Mensaje de derrota", JOptionPane.INFORMATION_MESSAGE);
         System.exit(0);
     }
 
@@ -125,11 +125,17 @@ public class Tablero extends JPanel {
     }
 
     public void mostrarMensajeVictoria() {
-        JOptionPane.showMessageDialog(this, "¡Has ganado!", "Mensaje de victoria", JOptionPane.INFORMATION_MESSAGE);
-        System.exit(0);
+        String nombre = JOptionPane.showInputDialog(this, "Ingresa tu nombre:");
+        guardarPuntuacion(nombre);
+
+        if (interfaz != null) {
+            interfaz.mostrarResultado(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "¡Ganaste!", "Mensaje de victoria", JOptionPane.INFORMATION_MESSAGE);
+            System.exit(0);
+        }
     }
 
-// Indica si alguna mina ha explotado
     public boolean algunaMinaExplotada() {
         for (int i = 0; i < filas; i++) {
             for (int j = 0; j < columnas; j++) {
@@ -139,5 +145,33 @@ public class Tablero extends JPanel {
             }
         }
         return false;
+    }
+
+    public void actualizarTiempo() {
+        tiempo++; // Incrementar el tiempo cada segundo
+    }
+
+    private void guardarPuntuacion(String nombre) {
+        try {
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/proyecto", "root", "programacion");
+            String sql = "INSERT INTO puntuaciones (nombre, puntuacion, juego) VALUES (?, ?, ?)";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setString(1, nombre);
+            stmt.setInt(2, tiempo); // Usar la variable 'tiempo' que representa el tiempo transcurrido
+            stmt.setString(3, "Buscaminas");
+            stmt.executeUpdate();
+            stmt.close();
+            conn.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void setInterfaz(Interfaz interfaz) {
+        this.interfaz = interfaz;
+    }
+
+    public int getTiempo() {
+        return tiempo;
     }
 }

@@ -117,4 +117,3 @@ public class Casilla extends JButton {
         this.marcada = marcada;
     }
 }
-

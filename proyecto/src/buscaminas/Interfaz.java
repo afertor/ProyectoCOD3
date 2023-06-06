@@ -1,10 +1,5 @@
 package buscaminas;
 
-/**
- *
- * @author lucas
- */
-import buscaminas.Tablero;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -19,20 +14,17 @@ public class Interfaz extends JFrame {
     private JLabel tiempoLabel;
     private Timer cronometro;
 
-    // Constructor
     public Interfaz(Tablero tablero) {
         this.tablero = tablero;
-        tiempoLabel = new JLabel("Tiempo: 0");
+        this.tiempoLabel = new JLabel("Tiempo: 0");
         add(tiempoLabel, BorderLayout.NORTH);
         add(tablero, BorderLayout.CENTER);
-    // Timer para actualizar el tiempo transcurrido
-        cronometro = new Timer(1000, new ActionListener() {
-            int segundos = 0;
 
+        cronometro = new Timer(1000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                segundos++;
-                tiempoLabel.setText("Tiempo: " + segundos);
+                tablero.actualizarTiempo();
+                tiempoLabel.setText("Tiempo: " + tablero.getTiempo());
             }
         });
 
@@ -45,13 +37,11 @@ public class Interfaz extends JFrame {
         setLocationRelativeTo(null);
     }
 
-    // Muestra el resultado del juego
     public void mostrarResultado(boolean ganado) {
         cronometro.stop();
-        int tiempo = Integer.parseInt(tiempoLabel.getText().split(": ")[1]);
+        int tiempo = tablero.getTiempo();
         String mensaje = ganado ? "¡Ganaste! Tardaste " + tiempo + " segundos." : "Perdiste";
         JOptionPane.showMessageDialog(this, mensaje);
         System.exit(0);
     }
-
 }

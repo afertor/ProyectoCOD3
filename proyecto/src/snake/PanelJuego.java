@@ -195,7 +195,7 @@ public class PanelJuego extends JPanel implements ActionListener {
 		String usuario = "root";
 		String contraseña = "programacion";
 
-		try ( Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/proyecto", "root", "45314531Ab")) {
+		try ( Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/proyecto", "root", "programacion")) {
 			String query = "INSERT INTO puntuaciones (nombre, puntuacion, juego) VALUES (?, ?, ?)";
 			PreparedStatement stmt = con.prepareStatement(query);
 			stmt.setString(1, nombreJugador);
