@@ -44,4 +44,11 @@ public class Interfaz extends JFrame {
         JOptionPane.showMessageDialog(this, mensaje);
         System.exit(0);
     }
+
+    public static void main(String[] args) {
+        Tablero tablero = Tablero.getInstance(8, 8, 10);
+        Interfaz interfaz = new Interfaz(tablero);
+        tablero.setInterfaz(interfaz);
+        interfaz.setVisible(true);
+    }
 }
