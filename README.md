@@ -187,12 +187,60 @@ sequenceDiagram
     deactivate Interfaz
 ```
 
+## Diagrama de flujo actualizado
+
+```mermaid 
+graph LR
+A[Inicio] --> B[Crear el tablero y configurar el juego]
+B --> C[Iniciar el tiempo]
+B --> D[Crear la interfaz gráfica]
+D --> E[Establecer la interfaz en el controlador]
+D --> F[Mostrar la interfaz]
+F --> G[Repetir hasta que el juego termine]
+G --> H[Si se abre una casilla]
+H --> I[Verificar si el juego ha terminado]
+H --> G
+G --> J[Si se marca una casilla]
+J --> K[Marcar la casilla]
+G --> J
+I -- Juego terminado en victoria --> L[Mostrar mensaje de victoria]
+I -- Juego terminado en derrota --> M[Mostrar mensaje de derrota]
+M --> N[Fin]
+L --> N
+```
 
 
 
+## Diagrama de secuencia actualizado
 
+```mermaid
 
+sequenceDiagram
+participant Proyecto_buscaminas
+participant Controlador
+participant Interfaz
+participant Tablero
 
+Proyecto_buscaminas->>Controlador: iniciarJuego(8, 8, 10)
+Controlador-->>Interfaz: setInterfaz(this)
+Proyecto_buscaminas->>Interfaz: mostrar()
+
+loop Hasta que el juego termine
+    Interfaz->>Controlador: abrirCasilla(fila, columna)
+    Controlador->>Tablero: abrirCasilla(fila, columna)
+    Tablero-->>Interfaz: actualizarCasilla(fila, columna)
+
+    Controlador->>Tablero: estadoJuego()
+    Tablero-->>Controlador: estadoJuego()
+
+    alt Juego terminado en victoria
+        Tablero-->>Interfaz: mostrarMensajeVictoria()
+    else Juego terminado en derrota
+        Tablero-->>Interfaz: mostrarMensajeDerrota()
+    end
+end
+Interfaz->>Interfaz: mostrarMenu()
+``` 
 
 
 
