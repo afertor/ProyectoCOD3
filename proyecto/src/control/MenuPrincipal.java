@@ -1,4 +1,4 @@
-package proyecto;
+package control;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -16,8 +16,6 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
-import buscaminas.*;
-import snake.*;
 
 public class MenuPrincipal {
 
@@ -64,7 +62,7 @@ public class MenuPrincipal {
         buscaminasButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Proyecto_buscaminas.main(null); // Llamada al método main de Proyecto_buscaminas
+                // Lógica para iniciar el juego de Buscaminas
             }
         });
         buscaminasButton.setBackground(new Color(74, 137, 220));
@@ -76,7 +74,7 @@ public class MenuPrincipal {
         snakeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Juego juegoSnake = new Juego();
+                // Lógica para iniciar el juego de Snake
             }
         });
         snakeButton.setBackground(new Color(74, 137, 220));
@@ -88,7 +86,7 @@ public class MenuPrincipal {
         clasificacionButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                showClasificacion("");
+                // Lógica para mostrar la clasificación
             }
         });
         clasificacionButton.setBackground(new Color(74, 137, 220));
@@ -126,56 +124,9 @@ public class MenuPrincipal {
         });
     }
 
-    public void showClasificacion(String juego) {
-        try {
-            if (juego.equalsIgnoreCase("Snake")) {
-                mostrarClasificacion("Snake");
-            } else {
-                String[] opciones = {"Snake", "Buscaminas"};
-                String seleccion = (String) JOptionPane.showInputDialog(null, "Selecciona un juego:", "Clasificación", JOptionPane.PLAIN_MESSAGE, null, opciones, opciones[0]);
-                mostrarClasificacion(seleccion);
-            }
-        } catch (ClasificacionException e) {
-            JOptionPane.showMessageDialog(null, "Error al obtener la clasificación: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-        }
-    }
-
-    public void mostrarClasificacion(String juego) throws ClasificacionException {
-        // Obtener datos de la base de datos y mostrar la clasificación
-        String clasificacion = obtenerClasificacion(juego);
-
-        JOptionPane.showMessageDialog(null, clasificacion, "Clasificación - " + juego, JOptionPane.PLAIN_MESSAGE);
-    }
-
-    public String obtenerClasificacion(String juego) throws ClasificacionException {
-        String url = "jdbc:mysql://localhost:3306/proyecto";
-        String usuario = "root";
-        String contraseña = "programacion";
-
-        try ( Connection con = DriverManager.getConnection(url, usuario, contraseña)) {
-            String query = "SELECT nombre, puntuacion FROM puntuaciones WHERE juego = ?";
-            PreparedStatement stmt = con.prepareStatement(query);
-            stmt.setString(1, juego);
-
-            ResultSet rs = stmt.executeQuery();
-
-            StringBuilder clasificacion = new StringBuilder();
-            int posicion = 1;
-            while (rs.next()) {
-                String nombre = rs.getString("nombre");
-                int puntuacion = rs.getInt("puntuacion");
-                clasificacion.append(posicion).append(". ").append(nombre).append(" - ").append(puntuacion).append(" puntos\n");
-                posicion++;
-            }
-
-            return clasificacion.toString();
-        } catch (SQLException e) {
-            throw new ClasificacionException("Error al obtener la clasificación: " + e.getMessage());
-        }
-    }
-
     public static void main(String[] args) {
         MenuPrincipal menu = new MenuPrincipal();
         menu.show();
     }
 }
+
