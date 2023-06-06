@@ -187,6 +187,17 @@ sequenceDiagram
     deactivate Interfaz
 ```
 
+------------------------------------------------------------------------------------------------------------------------------------------
+## SINGLETON
+------------------------------------------------------------------------------------------------------------------------------------------
+Partiendo del programa que teníamos hemos agregado el patrón singleton que es un patrón de diseño creacional que se utiliza para asegurar que una clase solo tenga una única instancia y proporcionar un punto de acceso global a dicha instancia.
+
+------------------------------------------------------------------------------------------------------------------------------------------
+## MVC
+------------------------------------------------------------------------------------------------------------------------------------------
+Partiendo de nuestro programa, tras agregar singleton y todos los cambios que nos solicitan, agregamamos la arquitectura MVC, que es un patrón de diseño de software que se utiliza para organizar y estructurar la lógica de una aplicación en tres componentes principales: el Modelo, la Vista y el Controlador.
+
+
 ## Diagrama de flujo actualizado
 
 ```mermaid 
