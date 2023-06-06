@@ -1,11 +1,5 @@
-package buscaminas;
+package modelo;
 
-/**
- *
- * @author lucas
- */
-// Importa las clases necesarias
-import buscaminas.Tablero;
 import java.awt.Image;
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
@@ -13,10 +7,8 @@ import java.awt.event.MouseEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
-// Define la clase Casilla que hereda de JButton
 public class Casilla extends JButton {
 
-    // Atributos de la clase Casilla
     private boolean abierta;
     private boolean mina;
     private int valor;
@@ -25,7 +17,6 @@ public class Casilla extends JButton {
     private ImageIcon imagenMina;
     private Tablero tablero;
 
-    // Constructor de la clase Casilla
     public Casilla(Tablero tablero) {
         this.tablero = tablero;
         this.abierta = false;
@@ -53,7 +44,6 @@ public class Casilla extends JButton {
         });
     }
 
-    // Método para abrir la casilla
     public void abrir() {
         if (!abierta && !marcada) {
             abierta = true;
@@ -67,14 +57,11 @@ public class Casilla extends JButton {
             }
 
             if (tablero.estadoJuego()) {
-                {
-                    tablero.mostrarMensajeVictoria();
-                }
+                tablero.mostrarMensajeVictoria();
             }
         }
     }
 
-    // Método para marcar la casilla
     public void marcar() {
         if (!abierta) {
             marcada = !marcada;
@@ -88,7 +75,6 @@ public class Casilla extends JButton {
         }
     }
 
-    // Getters y setters para los atributos de la clase Casilla
     public boolean isAbierta() {
         return abierta;
     }

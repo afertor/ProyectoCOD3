@@ -1,12 +1,13 @@
-package snake;
+package control;
 
 import javax.swing.JFrame;
+
 
 public class Juego extends JFrame {
 
     PanelJuego obj = new PanelJuego();
 
-    public Juego() { //constructor clase juego
+    public Juego() {
         this.add(obj);
         this.setTitle("Juego de Snake");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -14,6 +15,5 @@ public class Juego extends JFrame {
         this.pack();
         this.setVisible(true);
         this.setLocationRelativeTo(null);
-
     }
 }
