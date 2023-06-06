@@ -1,6 +1,5 @@
 package buscaminas;
 
-
 import java.awt.GridLayout;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -11,6 +10,7 @@ import javax.swing.JPanel;
 
 public class Tablero extends JPanel {
 
+    private static Tablero instance; // Instancia única del Tablero
     private Casilla[][] casillas;
     private int filas;
     private int columnas;
@@ -18,7 +18,8 @@ public class Tablero extends JPanel {
     private Interfaz interfaz;
     private int tiempo; // Variable para almacenar el tiempo transcurrido
 
-    public Tablero(int filas, int columnas, int minas) {
+    // Constructor privado para evitar la creación directa de instancias
+    private Tablero(int filas, int columnas, int minas) {
         this.filas = filas;
         this.columnas = columnas;
         this.minas = minas;
@@ -34,6 +35,14 @@ public class Tablero extends JPanel {
         }
         colocarMinas();
         calcularValores();
+    }
+
+    // Método estático para obtener la instancia única del Tablero
+    public static Tablero getInstance(int filas, int columnas, int minas) {
+        if (instance == null) {
+            instance = new Tablero(filas, columnas, minas);
+        }
+        return instance;
     }
 
     private void colocarMinas() {

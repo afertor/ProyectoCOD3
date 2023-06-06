@@ -64,9 +64,7 @@ public class MenuPrincipal {
         buscaminasButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Tablero tablero = new Tablero(8, 8, 10);
-                Interfaz interfaz = new Interfaz(tablero);
-                interfaz.setVisible(true);
+                Proyecto_buscaminas.main(null); // Llamada al método main de Proyecto_buscaminas
             }
         });
         buscaminasButton.setBackground(new Color(74, 137, 220));
